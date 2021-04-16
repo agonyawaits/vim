@@ -14,5 +14,8 @@ set nowrap
 set incsearch
 set exrc
 
-set colorcolumn=110
-highlight ColorColumn ctermbg=darkgray
+set colorcolumn=80
+set cursorline
+hi ColorColumn ctermbg=black
+hi CursorLine cterm=NONE ctermbg=black
+let g:netrw_banner = 0
