@@ -13,9 +13,12 @@ set ignorecase
 set nowrap
 set incsearch
 set exrc
-
+set nocompatible
+set path+=**
+set wildmenu
 set colorcolumn=90
 set cursorline
+
 hi ColorColumn ctermbg=black
 hi CursorLine cterm=NONE ctermbg=black
 
@@ -25,3 +28,5 @@ let g:netrw_browse_split=4
 let g:netrw_altv=1
 let g:netrw_winsize=10
 au VimEnter * if (eval("@%") == "") | :Vexplore | endif
+
+command! MakeTags !ctags -R .
