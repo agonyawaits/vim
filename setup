@@ -1,5 +1,0 @@
-#!/bin/bash
-
-cp .vimrc ~/ &&
-mkdir -p ~/.vim/after/syntax && cp c-syntax.vim ~/.vim/after/syntax/ &&
-echo "done"

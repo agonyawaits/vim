@@ -1,6 +1,6 @@
+set path+=**
 set makeprg=build.bash
 nnoremap <F2> :wall \| make!<cr>
-nnoremap <F3> :!run.bash<cr>
 
 packadd termdebug
 let g:termdebug_wide=1
@@ -12,3 +12,5 @@ nnoremap <F8> :Clear<cr>zz
 nnoremap <F9> :Break<cr>zz
 nnoremap <F10> :Over<cr>zz
 nnoremap <F11> :Step<cr>zz
+
+command! MakeTags !ctags -R .

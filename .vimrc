@@ -1,5 +1,6 @@
 syntax on
-set number
+set nocompatible
+set number relativenumber
 set noerrorbells
 set tabstop=4 softtabstop=4
 set expandtab
@@ -10,23 +11,13 @@ set cindent
 set showmatch 
 set ruler
 set ignorecase
-set nowrap
+set wrap
 set incsearch
 set exrc
-set nocompatible
-set path+=**
 set wildmenu
 set colorcolumn=90
-set cursorline
+set termguicolors
 
-hi ColorColumn ctermbg=black
-hi CursorLine cterm=NONE ctermbg=black
-
+colorscheme alduin
 let g:netrw_banner=0
-let g:netrw_liststyle=3
-let g:netrw_browse_split=4
-let g:netrw_altv=1
-let g:netrw_winsize=10
-au VimEnter * if (eval("@%") == "") | :Vexplore | endif
-
-command! MakeTags !ctags -R .
+let g:netrw_winsize=20
