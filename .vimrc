@@ -14,5 +14,7 @@ set wildmenu
 set colorcolumn=90
 set termguicolors
 colorscheme alduin
-autocmd VimEnter * SetColors
-let g:netrw_banner = 0
+let g:netrw_banner=0
+let g:netrw_liststyle=1
+let g:netrw_sizestyle="H"
+let g:netrw_browse_split=1

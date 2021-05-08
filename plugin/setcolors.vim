@@ -6,6 +6,7 @@ if v:version < 700 || exists('loaded_setcolors') || &cp
 endif
 
 let loaded_setcolors = 1
+let s:mycolors = []
 
 function! s:SetColors()
   let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n")
