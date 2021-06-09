@@ -1,4 +1,5 @@
 syntax on
+set path=.,**
 set nocompatible
 set number relativenumber
 set noerrorbells
@@ -11,10 +12,20 @@ set wrap
 set incsearch
 set exrc
 set wildmenu
-set colorcolumn=90
-set termguicolors
-colorscheme alduin
+set noswapfile
+set colorcolumn=80
+set backspace=start,eol,indent
+set so=5
+if has("gui_running")
+    set termguicolors
+    set guifont=Liberation\ Mono:h15
+    set fu
+endif
+colorscheme iceberg
 let g:netrw_banner=0
 let g:netrw_liststyle=1
 let g:netrw_sizestyle="H"
 let g:netrw_browse_split=1
+let RTP=split(&runtimepath, ',')
+let RC="$HOME/.vim/vimrc"
+command! MakeTags !ctags -R . 
