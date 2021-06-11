@@ -15,7 +15,6 @@ set wildmenu
 set noswapfile
 set colorcolumn=80
 set backspace=start,eol,indent
-set so=5
 if has("gui_running")
     set termguicolors
     set guifont=Liberation\ Mono:h15
