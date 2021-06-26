@@ -18,13 +18,12 @@ set backspace=start,eol,indent
 if has("gui_running")
     set termguicolors
     set guifont=Liberation\ Mono:h15
-    set fu
 endif
-colorscheme iceberg
+colorscheme gruvbox
 let g:netrw_banner=0
 let g:netrw_liststyle=1
 let g:netrw_sizestyle="H"
 let g:netrw_browse_split=1
-let RTP=split(&runtimepath, ',')
-let RC="$HOME/.vim/vimrc"
+let $RTP=split(&runtimepath, ',')[0]
+let $RC="$HOME/.vim/vimrc"
 command! MakeTags !ctags -R . 
