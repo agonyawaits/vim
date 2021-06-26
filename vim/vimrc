@@ -28,3 +28,4 @@ let $RTP=split(&runtimepath, ',')[0]
 let $RC="$HOME/.vim/vimrc"
 command! MakeTags !ctags -R . 
 autocmd FileType make setlocal noexpandtab
+nnoremap <SPACE> :wall\|silent make\|copen<CR><C-W>L
