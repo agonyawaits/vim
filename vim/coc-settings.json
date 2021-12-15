@@ -41,5 +41,6 @@
         ".venv",
         "__pycache__",
         "venv"
-    ]
+    ],
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true
 }
