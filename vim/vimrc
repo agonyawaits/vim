@@ -17,41 +17,36 @@ set colorcolumn=80
 set backspace=start,eol,indent
 set laststatus=2
 set statusline=%f
+colorscheme nord
+set clipboard=unnamed
+set hlsearch
+
+if has("win32")
+    vmap <C-S-x> "+x
+    vmap <C-S-c> "+y
+    imap <C-S-v> <Esc>"+P
+    set makeprg=cl\ -Zi\ /EHsc\ /std:c++20\ %
+endif
+
 if has("gui_running")
     set guioptions=
-    if has("mac")
-        set fu
-        set guifont=Liberation\ Mono:h15
+    set guifont=Liberation\ Mono:h11
+    if has('win32')
+        autocmd GUIEnter * silent! WToggleClean
+        autocmd GUIEnter * silent! WToggleFullscreen
+        autocmd GUIEnter * silent! WSetAlpha 247
     else
-        set lines=999 columns=999
-        set guifont=Ubuntu\ Mono\ 12
+        set fu
     endif
 endif
-colorscheme GruberDarker
-let g:netrw_banner=0
-let g:netrw_liststyle=1
-let g:netrw_sizestyle="H"
-let g:netrw_browse_split=1
+
+
 let $RTP=split(&runtimepath, ',')[0]
-let $RC="$HOME/.vim/vimrc"
+let $RC="$HOME/vimfiles/vimrc"
+
 au FileType make setlocal noexpandtab
 au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-call plug#begin('$RTP/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'iamcco/markdown-preview.vim'
-call plug#end()
 
-" coc
-let g:coc_global_extensions = ['coc-pairs', 'coc-tsserver', 'coc-eslint', 'coc-json', 'coc-jedi', 'coc-rls']
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
@@ -63,22 +58,53 @@ set updatetime=300
 set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+
+let g:netrw_banner=0
+let g:netrw_liststyle=1
+let g:netrw_sizestyle="H"
+let g:netrw_browse_split=1
+let mapleader=" "
+
+call plug#begin('$RTP/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'iamcco/markdown-preview.vim'
+call plug#end()
+
+" coc
+let g:coc_global_extensions = ['coc-pairs', 'coc-tsserver', 'coc-eslint',
+    \ 'coc-json', 'coc-jedi', 'coc-rust-analyzer', 'coc-clangd', 'coc-yaml',
+    \ 'coc-phpls', 'coc-perl', 'coc-webview', 'coc-markdown-preview-enhanced',
+    \ 'coc-java', 'coc-go']
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " use <tab> for trigger completion and navigate to the next complete item
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 inoremap <silent><expr> <Tab>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> R <Plug>(coc-rename)
+nmap <silent> F :CocList -I symbols<CR>
+nmap <silent> 1 :CocCommand workspace.inspectEdit<CR>
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
