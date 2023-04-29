@@ -26,23 +26,25 @@ if has("win32")
     vmap <C-S-c> "+y
     imap <C-S-v> <Esc>"+P
     set makeprg=cl\ -Zi\ /EHsc\ /std:c++20\ %
+    let $RTP=split(&runtimepath, ',')[0]
+    let $RC="$HOME/vimfiles/vimrc"
+else
+    let $RTP=split(&runtimepath, ',')[0]
+    let $RC="$HOME/.vim/vimrc"
 endif
 
 if has("gui_running")
     set guioptions=
-    set guifont=Liberation\ Mono:h11
     if has('win32')
+        set guifont=Liberation\ Mono:h11
         autocmd GUIEnter * silent! WToggleClean
         autocmd GUIEnter * silent! WToggleFullscreen
         autocmd GUIEnter * silent! WSetAlpha 247
     else
         set fu
+        set guifont=Liberation\ Mono:h14
     endif
 endif
-
-
-let $RTP=split(&runtimepath, ',')[0]
-let $RC="$HOME/vimfiles/vimrc"
 
 au FileType make setlocal noexpandtab
 au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
