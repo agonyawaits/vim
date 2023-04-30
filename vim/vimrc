@@ -17,7 +17,7 @@ set colorcolumn=80
 set backspace=start,eol,indent
 set laststatus=2
 set statusline=%f
-colorscheme nord
+colorscheme molokai
 set clipboard=unnamed
 set hlsearch
 
@@ -68,6 +68,7 @@ let g:netrw_browse_split=3
 let mapleader=" "
 
 call plug#begin('$RTP/plugged')
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.vim'
 call plug#end()
