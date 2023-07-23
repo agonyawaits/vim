@@ -5,7 +5,7 @@ set number relativenumber
 set noerrorbells
 set tabstop=4 expandtab shiftwidth=4 smarttab
 set cindent
-set showmatch 
+set showmatch
 set ruler
 set ignorecase
 set wrap
@@ -42,7 +42,10 @@ if has("gui_running")
         autocmd GUIEnter * silent! WSetAlpha 247
     else
         set fu
-        set guifont=Liberation\ Mono:h14
+        " set gfn=Liberation\ Mono:h14
+        " set gfn=Ubuntu\ Mono:h14
+        set gfn=LiterationMonoPowerline:h12
+        " set gfn=UbuntuMonoDerivativePowerline-Regular:h14
     endif
 endif
 
@@ -61,23 +64,35 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+call plug#begin('$RTP/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'iamcco/markdown-preview.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/Command-T'
+Plug 'preservim/nerdtree'
+call plug#end()
+
 let g:netrw_banner=0
 let g:netrw_liststyle=1
 let g:netrw_sizestyle="H"
 let g:netrw_browse_split=3
-let mapleader=" "
 
-call plug#begin('$RTP/plugged')
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'iamcco/markdown-preview.vim'
-call plug#end()
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+let g:NERDTreeWinPos='right'
+
+let mapleader=" "
 
 " coc
 let g:coc_global_extensions = ['coc-pairs', 'coc-tsserver', 'coc-eslint',
     \ 'coc-json', 'coc-jedi', 'coc-rust-analyzer', 'coc-clangd', 'coc-yaml',
     \ 'coc-phpls', 'coc-perl', 'coc-webview', 'coc-markdown-preview-enhanced',
-    \ 'coc-java', 'coc-go']
+    \ 'coc-java', 'coc-go', 'coc-kotlin']
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -105,9 +120,14 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> R <Plug>(coc-rename)
-nmap <silent> F :CocList -I symbols<CR>
-nmap <silent> 1 :CocCommand workspace.inspectEdit<CR>
+nmap <silent> <leader>r <Plug>(coc-rename)
+nmap <silent> <leader>s :CocList -I symbols<CR>
+nmap <silent> <leader>ie :CocCommand workspace.inspectEdit<CR>
+nmap <silent> <leader>N :NERDTreeToggle<CR>
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+let g:CommandTMaxHeight=15
+let g:CommandTMaxFiles=20000
+let g:airline_powerline_fonts=1
