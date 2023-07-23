@@ -17,7 +17,7 @@ set colorcolumn=80
 set backspace=start,eol,indent
 set laststatus=2
 set statusline=%f
-colorscheme molokai
+colorscheme onedark
 set clipboard=unnamed
 set hlsearch
 
@@ -44,8 +44,8 @@ if has("gui_running")
         set fu
         " set gfn=Liberation\ Mono:h14
         " set gfn=Ubuntu\ Mono:h14
-        set gfn=LiterationMonoPowerline:h12
-        " set gfn=UbuntuMonoDerivativePowerline-Regular:h14
+        " set gfn=LiterationMonoPowerline:h12
+        set gfn=UbuntuMonoDerivativePowerline-Regular:h14
     endif
 endif
 
@@ -92,7 +92,7 @@ let mapleader=" "
 let g:coc_global_extensions = ['coc-pairs', 'coc-tsserver', 'coc-eslint',
     \ 'coc-json', 'coc-jedi', 'coc-rust-analyzer', 'coc-clangd', 'coc-yaml',
     \ 'coc-phpls', 'coc-perl', 'coc-webview', 'coc-markdown-preview-enhanced',
-    \ 'coc-java', 'coc-go', 'coc-kotlin']
+    \ 'coc-java', 'coc-go', 'coc-kotlin', 'coc-jedi']
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
